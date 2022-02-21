@@ -8,7 +8,6 @@ import math
 import time
 
 import cvxpy
-import matplotlib.pyplot as plt
 import numpy as np
 
 # Model parameters

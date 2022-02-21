@@ -74,30 +74,30 @@ planeId = p.loadURDF(
 p.setJointMotorControl2(planeId, 0, p.POSITION_CONTROL, force=0)
 p.setJointMotorControl2(planeId, 1, p.POSITION_CONTROL, force=0)
 # p.applyExternalForce(planeId, 0, (-100, 0, 0), startPos, p.WORLD_FRAME)
-kp = 3
-kd = 0.5
-kp2 = 1000
-kd2 = 20
-error = 0
-error_old = 0
+# kp = 3
+# kd = 0.5
+# kp2 = 1000
+# kd2 = 20
+# error = 0
+# error_old = 0
 desired_pos = np.array([10, 0])
-dt = 0.001
-error_cart = 0
+# dt = 0.001
+# error_cart = 0
 # set the center of mass frame (loadURDF sets base link frame) startPos/Ornp.resetBasePositionAndOrientation(boxId, startPos, startOrientation)
 while True:
 
     pos1, vel_1, _, _ = p.getJointState(planeId, 0)
     pos2, vel_2, _, _ = p.getJointState(planeId, 1)
-    pos = np.array([pos1, pos2])
-    error = desired_pos - pos
-    error_d = (error - error_old)/dt
+    # pos = np.array([pos1, pos2])
+    # error = desired_pos - pos
+    # error_d = (error - error_old)/dt
     # control_force = (kp * error[0]) + (kd *
     #                                    error_d[0]) + (kp2 * error[1]) + (kd2 * error_d[1])
     # # print(control_force)
     # print(pos1, vel_1, pos2, vel_2)
     control_force = find_lqr_control_input(
         pos1, vel_1, pos2, vel_2)
-    error_old = error
+    # error_old = error
     # print(pos2, -force)
     p.setJointMotorControl2(
         planeId, 0, p.TORQUE_CONTROL, force=control_force)
