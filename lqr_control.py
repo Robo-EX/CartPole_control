@@ -68,7 +68,7 @@ p.setGravity(0, 0, -9.8)
 startPos = [0, 0, 0]
 startOrientation = p.getQuaternionFromEuler([0, 0, 0])
 planeId = p.loadURDF(
-    "/home/bhavik/catkin_ws/src/cartpole/src/cart.urdf", startPos, startOrientation)
+    "/home/bhavik/CartPole_control/cart.urdf", startPos, startOrientation)
 # print(planeId)
 # print(p.getNumJoints(planeId))
 p.setJointMotorControl2(planeId, 0, p.POSITION_CONTROL, force=0)

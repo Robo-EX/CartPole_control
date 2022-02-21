@@ -12,7 +12,8 @@ p.setGravity(0, 0, -9.8)
 startPos = [0, 0, 0]
 ALPHA = 3000
 startOrientation = p.getQuaternionFromEuler([0, 0, 0])
-planeId = p.loadURDF("cart.urdf", startPos, startOrientation)
+planeId = p.loadURDF(
+    "/home/bhavik/CartPole_control/cart.urdf", startPos, startOrientation)
 print(planeId)
 print(p.getNumJoints(planeId))
 p.setJointMotorControl2(planeId, 0, p.POSITION_CONTROL, force=0)
@@ -33,7 +34,7 @@ while True:
     pos1, vel_1, _, _ = p.getJointState(planeId, 0)
     pos2, vel_2, _, _ = p.getJointState(planeId, 1)
     pos = np.array([pos1, pos2])
-    error =  pos - desired_pos
+    error = pos - desired_pos
     error_d = (error - error_old)/dt
     control_force = (kp * error[0]) + (kd *
                                        error_d[0]) + (kp2 * error[1]) + (kd2 * error_d[1])
